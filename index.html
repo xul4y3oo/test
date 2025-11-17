@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>廖梓翔的作品集 (範例)</title>
+    <title>廖梓翔的作品集 (下拉選單版)</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,77 +12,130 @@
     <style>
         /* --- 全局重設與基本設定 --- */
         * {
-            box-sizing: border-box; /* 讓 padding 和 border 不會撐開寬度 */
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
         body {
-            font-family: 'Noto Sans TC', sans-serif; /* 使用思源黑體 */
+            font-family: 'Noto Sans TC', sans-serif;
             line-height: 1.6;
-            background-color: #f4f7f6; /* 柔和的淺灰色背景 */
-            color: #333; /* 深灰色文字，比純黑更柔和 */
+            background-color: #f4f7f6;
+            color: #333;
         }
 
         /* --- 容器 (Container) --- */
-        /* 用於將內容集中在中間，並設定最大寬度 */
         .container {
             max-width: 960px;
-            margin: 0 auto; /* 左右自動邊距，實現水平置中 */
-            padding: 0 20px; /* 左右留白，避免內容貼邊 */
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         /* --- 頂部導覽列 (Navbar) --- */
         nav {
-            background: #ffffff; /* 白色背景 */
-            padding: 1rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 輕微的陰影 */
-            position: fixed; /* 固定在頂部 */
+            background: #ffffff;
+            padding: 0; /* 移除 padding，交給 li */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: fixed;
             width: 100%;
             top: 0;
             z-index: 10;
         }
 
         nav .container {
-            display: flex; /* 使用 Flexbox 佈局 */
-            justify-content: space-between; /* 讓 Logo 和 連結 分散對齊 */
-            align-items: center; /* 垂直置中 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         nav .logo {
             font-size: 1.25rem;
             font-weight: 700;
-            color: #007bff; /* 品牌藍色 */
+            color: #007bff;
             text-decoration: none;
+            padding: 1rem 0; /* 確保 Logo 區域有足夠高度 */
         }
 
         nav ul {
-            list-style: none; /* 移除項目符號 */
-            display: flex;
+            list-style: none;
+            display: flex; /* 讓 學科類/遊戲類/影視類 橫向排列 */
         }
 
+        /* 【修改】導覽列的 li 項目 */
         nav ul li {
-            margin-left: 20px; /* 連結間的距離 */
+            position: relative; /* 讓下拉選單可以相對於此定位 */
+            margin-left: 0; /* 移除舊的 margin */
         }
 
-        nav ul li a {
-            text-decoration: none; /* 移除底線 */
+        /* 【修改】頂層連結 (下拉觸發器) */
+        .dropbtn {
+            text-decoration: none;
             color: #555;
             font-weight: 700;
-            transition: color 0.2s; /* 滑鼠移過時的顏色漸變 */
+            transition: color 0.2s;
+            padding: 1.5rem 1.5rem; /* 增大點擊範圍 (上下 1.5rem, 左右 1.5rem) */
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: inherit;
         }
 
-        nav ul li a:hover {
-            color: #007bff; /* 滑鼠移過時變藍色 */
+        /* 【修改】頂層連結的滑鼠懸停效果 */
+        .dropbtn:hover {
+            color: #007bff;
+            background-color: #f9f9f9; /* 輕微的背景色變化 */
         }
+
+        /* ===【以下為新增的 CSS】=== */
+
+        /* --- 導覽列的下拉選單 --- */
+        
+        /* 下拉選單的容器 */
+        .dropdown-content {
+            display: none; /* 預設隱藏 */
+            position: absolute; /* 絕對定位，浮在頁面之上 */
+            top: 100%; /* 從父元素的底部開始 */
+            left: 0;
+            background-color: #ffffff;
+            min-width: 200px; /* 下拉選單寬度 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 0 0 4px 4px; /* 只有下方有圓角 */
+            z-index: 20; /* 確保在最上層 */
+            padding: 0.5rem 0; /* 上下留白 */
+        }
+
+        /* 下拉選單中的連結 */
+        .dropdown-content a {
+            color: #333;
+            padding: 0.75rem 1.5rem; /* 連結的內距 */
+            text-decoration: none;
+            display: block; /* 獨占一行 */
+            text-align: left; /* 文字靠左 */
+            font-weight: normal; /* 不用粗體 */
+            transition: background-color 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f4f7f6; /* 滑鼠移過時的背景色 */
+            color: #007bff;
+        }
+
+        /* 當滑鼠移到 .dropdown (li) 上時，顯示下拉選單 */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* ===【以上為新增的 CSS】=== */
+
 
         /* --- 頁首 (Header) --- */
-        /* 這是 "who the fk u are" 的區塊 */
         header {
             background: #ffffff;
             text-align: center;
-            padding: 8rem 1rem 4rem 1rem; /* 上方留白更多 (因為 navbar 佔了空間) */
-            margin-top: 60px; /* 推開被 navbar 擋住的空間 */
+            padding: 8rem 1rem 4rem 1rem;
+            margin-top: 60px; /* 推開被 navbar 擋住的空間 (高度需配合 navbar padding) */
             border-bottom: 1px solid #e0e0e0;
         }
 
@@ -105,47 +158,47 @@
         }
 
         /* --- 專案區塊 (Projects Section) --- */
-        #projects {
+        section {
             text-align: center;
         }
 
-        #projects h2 {
+        section h2 {
             font-size: 2rem;
             margin-bottom: 2rem;
             border-bottom: 3px solid #007bff;
-            display: inline-block; /* 讓底線只跟文字一樣寬 */
+            display: inline-block;
             padding-bottom: 0.5rem;
         }
 
         /* 專案卡片網格 */
         .project-grid {
             display: flex;
-            flex-wrap: wrap; /* 允許換行 */
-            justify-content: center; /* 置中卡片 */
-            gap: 20px; /* 卡片之間的間距 */
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
         }
 
         /* 專案卡片 (Card) */
         .project-card {
             background: #ffffff;
             border: 1px solid #ddd;
-            border-radius: 8px; /* 圓角 */
+            border-radius: 8px;
             padding: 1.5rem;
-            width: 300px; /* 固定寬度 */
+            width: 300px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s; /* 平滑的動態效果 */
-            text-decoration: none; /* 讓整個卡片是連結，且沒有底線 */
-            color: inherit; /* 繼承 body 的文字顏色 */
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
             text-align: left;
         }
 
         .project-card:hover {
-            transform: translateY(-5px); /* 向上浮動 */
+            transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
 
         .project-card h3 {
-            color: #007bff; /* 專案標題用主題色 */
+            color: #007bff;
             margin-bottom: 0.5rem;
         }
 
@@ -166,15 +219,36 @@
     <nav>
         <div class="container">
             <a href="#" class="logo">廖梓翔的作品集</a>
+            
             <ul>
-                <li><a href="#about">關於我</a></li>
-                <li><a href="#projects">我的專案</a></li>
-                <li><a href="#contact">聯絡我</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">學科類 &#9662;</a> <div class="dropdown-content">
+                        <a href="https://xul4y3oo.github.io/english/" target="_blank" rel="noopener noreferrer">英文作文</a>
+                        <a href="https://xul4y3oo.github.io/" target="_blank" rel="noopener noreferrer">矩陣計算機</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">遊戲類 &#9662;</a>
+                    <div class="dropdown-content">
+                        <a href="#">遊戲一 (尚未連結)</a>
+                        <a href="#">遊戲二 (尚未連結)</a>
+                    </div>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">影視類 &#9662;</a>
+                    <div class="dropdown-content">
+                         <a href="https://www.youtube.com/shorts/_JYk_xksaCY" target="_blank" rel="noopener noreferrer">影片製作範例</a>
+                         <a href="https://www.youtube.com/watch?v=SUcqf_efXx4" target="_blank" rel="noopener noreferrer">MrBeast 分析</a>
+                    </div>
+                </li>
             </ul>
+
         </div>
     </nav>
 
-    <header id="about">
+    <header>
         <h1>歡迎來到我的網站</h1>
         <p class="subtitle">我是一名網頁開發者 (或您的身分)，熱衷於創造實用且有趣的網頁工具。
             (這裡放您自己的專業介紹)</p>
@@ -182,35 +256,38 @@
 
     <main class="container">
 
-        <section id="projects">
-            <h2>我的專案</h2>
+        <section>
+            <h2>專案總覽</h2>
             
             <div class="project-grid">
-
+                
                 <a href="https://xul4y3oo.github.io/" class="project-card" target="_blank" rel="noopener noreferrer">
                     <h3>2x2 矩陣計算機</h3>
                     <p>一個超牛逼的矩陣計算工具，幫助您快速完成線性代數運算。</p>
                 </a>
-
                 <a href="https://xul4y3oo.github.io/english/" class="project-card" target="_blank" rel="noopener noreferrer">
                     <h3>英文作文生成器</h3>
-                    <p>30天提升你的英語能力100%。(這裡可以放更詳細的工具描述)</p>
+                    <p>30天提升你的英語能力100%。</p>
                 </a>
 
                 <a href="https://www.youtube.com/shorts/_JYk_xksaCY" class="project-card" target="_blank" rel="noopener noreferrer">
                     <h3>影片製作範例</h3>
-                    <p>這是我剪輯與製作的短片範例。(賦予連結一個專業的上下文)</p>
+                    <p>這是我剪輯與製作的短片範例。</p>
                 </a>
-                
                 <a href="https://www.youtube.com/watch?v=SUcqf_efXx4" class="project-card" target="_blank" rel="noopener noreferrer">
                     <h3>MrBeast 專案分析</h3>
-                    <p>分析 MrBeast 的影片策略。(假設這個連結的專業用途)</p>
+                    <p>分析 MrBeast 的影片策略。</p>
+                </a>
+                
+                <a href="#" class="project-card">
+                    <h3>遊戲一</h3>
+                    <p>(您可以在這裡描述您的遊戲專案)</p>
                 </a>
 
             </div>
         </section>
 
-        <section id="contact" style="text-align: center; margin-top: 3rem;">
+        <section style="text-align: center; margin-top: 3rem;">
             <h2>聯絡我</h2>
             <p>您可以透過 Email: xiang20080131@example.com 找到我。</p>
         </section>
