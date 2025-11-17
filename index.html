@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>廖梓翔的作品集 (範例)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 全局重設與基本設定 --- */
+        * {
+            box-sizing: border-box; /* 讓 padding 和 border 不會撐開寬度 */
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif; /* 使用思源黑體 */
+            line-height: 1.6;
+            background-color: #f4f7f6; /* 柔和的淺灰色背景 */
+            color: #333; /* 深灰色文字，比純黑更柔和 */
+        }
+
+        /* --- 容器 (Container) --- */
+        /* 用於將內容集中在中間，並設定最大寬度 */
+        .container {
+            max-width: 960px;
+            margin: 0 auto; /* 左右自動邊距，實現水平置中 */
+            padding: 0 20px; /* 左右留白，避免內容貼邊 */
+        }
+
+        /* --- 頂部導覽列 (Navbar) --- */
+        nav {
+            background: #ffffff; /* 白色背景 */
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 輕微的陰影 */
+            position: fixed; /* 固定在頂部 */
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav .container {
+            display: flex; /* 使用 Flexbox 佈局 */
+            justify-content: space-between; /* 讓 Logo 和 連結 分散對齊 */
+            align-items: center; /* 垂直置中 */
+        }
+
+        nav .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #007bff; /* 品牌藍色 */
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none; /* 移除項目符號 */
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px; /* 連結間的距離 */
+        }
+
+        nav ul li a {
+            text-decoration: none; /* 移除底線 */
+            color: #555;
+            font-weight: 700;
+            transition: color 0.2s; /* 滑鼠移過時的顏色漸變 */
+        }
+
+        nav ul li a:hover {
+            color: #007bff; /* 滑鼠移過時變藍色 */
+        }
+
+        /* --- 頁首 (Header) --- */
+        /* 這是 "who the fk u are" 的區塊 */
+        header {
+            background: #ffffff;
+            text-align: center;
+            padding: 8rem 1rem 4rem 1rem; /* 上方留白更多 (因為 navbar 佔了空間) */
+            margin-top: 60px; /* 推開被 navbar 擋住的空間 */
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #222;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- 主要內容 (Main Content) --- */
+        main {
+            padding: 3rem 0;
+        }
+
+        /* --- 專案區塊 (Projects Section) --- */
+        #projects {
+            text-align: center;
+        }
+
+        #projects h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid #007bff;
+            display: inline-block; /* 讓底線只跟文字一樣寬 */
+            padding-bottom: 0.5rem;
+        }
+
+        /* 專案卡片網格 */
+        .project-grid {
+            display: flex;
+            flex-wrap: wrap; /* 允許換行 */
+            justify-content: center; /* 置中卡片 */
+            gap: 20px; /* 卡片之間的間距 */
+        }
+
+        /* 專案卡片 (Card) */
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px; /* 圓角 */
+            padding: 1.5rem;
+            width: 300px; /* 固定寬度 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s; /* 平滑的動態效果 */
+            text-decoration: none; /* 讓整個卡片是連結，且沒有底線 */
+            color: inherit; /* 繼承 body 的文字顏色 */
+            text-align: left;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px); /* 向上浮動 */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .project-card h3 {
+            color: #007bff; /* 專案標題用主題色 */
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- 頁尾 (Footer) --- */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">廖梓翔的作品集</a>
+            <ul>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#projects">我的專案</a></li>
+                <li><a href="#contact">聯絡我</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header id="about">
+        <h1>歡迎來到我的網站</h1>
+        <p class="subtitle">我是一名網頁開發者 (或您的身分)，熱衷於創造實用且有趣的網頁工具。
+            (這裡放您自己的專業介紹)</p>
+    </header>
+
+    <main class="container">
+
+        <section id="projects">
+            <h2>我的專案</h2>
+            
+            <div class="project-grid">
+
+                <a href="https://xul4y3oo.github.io/" class="project-card" target="_blank" rel="noopener noreferrer">
+                    <h3>2x2 矩陣計算機</h3>
+                    <p>一個超牛逼的矩陣計算工具，幫助您快速完成線性代數運算。</p>
+                </a>
+
+                <a href="https://xul4y3oo.github.io/english/" class="project-card" target="_blank" rel="noopener noreferrer">
+                    <h3>英文作文生成器</h3>
+                    <p>30天提升你的英語能力100%。(這裡可以放更詳細的工具描述)</p>
+                </a>
+
+                <a href="https://www.youtube.com/shorts/_JYk_xksaCY" class="project-card" target="_blank" rel="noopener noreferrer">
+                    <h3>影片製作範例</h3>
+                    <p>這是我剪輯與製作的短片範例。(賦予連結一個專業的上下文)</p>
+                </a>
+                
+                <a href="https://www.youtube.com/watch?v=SUcqf_efXx4" class="project-card" target="_blank" rel="noopener noreferrer">
+                    <h3>MrBeast 專案分析</h3>
+                    <p>分析 MrBeast 的影片策略。(假設這個連結的專業用途)</p>
+                </a>
+
+            </div>
+        </section>
+
+        <section id="contact" style="text-align: center; margin-top: 3rem;">
+            <h2>聯絡我</h2>
+            <p>您可以透過 Email: xiang20080131@example.com 找到我。</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 梓翔股份有限公司. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
